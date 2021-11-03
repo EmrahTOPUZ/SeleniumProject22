@@ -19,6 +19,11 @@ public class BasicNavigations {
 
         System.out.println("Current title " + driver.getTitle());
 
+
+        String currentUrl = driver.getCurrentUrl();
+
+        System.out.println("currentUrl = " + currentUrl);
+
         Thread.sleep(3000);
 
         // Going back using navigation
@@ -38,5 +43,12 @@ public class BasicNavigations {
         driver.navigate().to("https://google.com");
 
         System.out.println("Current title " + driver.getTitle());
+
+        currentUrl = driver.getCurrentUrl();
+
+        System.out.println("currentUrl = " + currentUrl);
+
+        // this line will maximize the browser
+        driver.manage().window().maximize();
     }
 }
