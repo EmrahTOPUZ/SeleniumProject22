@@ -48,7 +48,21 @@ public class BasicNavigations {
 
         System.out.println("currentUrl = " + currentUrl);
 
-        // this line will maximize the browser
+        // this line will maximize the browser page
         driver.manage().window().maximize();
+
+        //Will not work for windows, only for mac users
+        //driver.manage().window().fullscreen();
+
+        driver.close();
+        //will close the currently opened browser
+
+        driver.quit();
+        //will close sll of the opened browsers or tabs within the same
+
+        //pkill -9 Google Chrome
+        // Terminal comment to close all the opened Google Chrome browsers
+        // command + space will open spotlight search on macbook
     }
+
 }
