@@ -29,8 +29,30 @@ public class CybertekPractice {
 
         driver.close();
 
-
-
-
     }
 }
+
+/**
+ *  #6- ) tagName :
+ *         -> tagName is one of the 8 locators of Selenium
+ *         -> tagName is locating web elements using their tag names
+ *
+ *   ------------------------------------------------------------------
+ *
+ *   .getText();
+ *
+ *       -> .getText() method gets the text of the given web element.
+ *       -> .getText() method is only able to return the text that is in between the OPENING TAG and CLOSING TAG
+ *       -> This method DOES NOT accept any Arguments
+ *       -> return typee is String
+ *
+ *   .getAttribute
+ *
+ *       -> .getAttribute method will get the given attribute value
+ *       -> this method is only able to read inside of the <openingTag>
+ *       -> it will find the mathching attribute name , and return the value
+ *       -> return type: String
+ *
+ *
+ *
+ */
