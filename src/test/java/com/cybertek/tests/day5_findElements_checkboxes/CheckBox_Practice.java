@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.concurrent.TimeUnit;
 
 public class CheckBox_Practice {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
@@ -22,8 +22,35 @@ public class CheckBox_Practice {
         if (!checkBox1.isSelected()) {
             System.out.println("Checkbox 1 is not selected verification is passed");
         } else {
+            System.out.println("Checkbox 1 is not selected verification is failed");
+        }
+
+        if (checkBox2.isSelected()) {
+            System.out.println("Checkbox 2 is not selected verification is passed");
+        } else {
             System.out.println("Checkbox 2 is not selected verification is failed");
         }
+
+        Thread.sleep(3000);
+        checkBox1.click();
+
+
+        Thread.sleep(3000);
+        checkBox2.click();
+
+
+        if (checkBox1.isSelected()) {
+            System.out.println("Checkbox 1 is not selected verification is passed");
+        } else {
+            System.out.println("Checkbox 1 is not selected verification is failed");
+        }
+
+        if (!checkBox2.isSelected()) {
+            System.out.println("Checkbox 2 is not selected verification is passed");
+        } else {
+            System.out.println("Checkbox 2 is not selected verification is failed");
+        }
+
 
 
         }
