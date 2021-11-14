@@ -30,9 +30,9 @@ public class Merriam_Webster {
                 linksWithText++;
             }
 
-            System.out.println("--> Current page links with NO TEXT: " + linksWithNoText);
+            System.out.println(" Current page links with NO TEXT: " + linksWithNoText);
 
-            System.out.println("--> Current page links with text: " + linksWithText);
+            System.out.println(" Current page links with text: " + linksWithText);
 
             listOfLinks = driver.findElements(By.xpath("//ul[@class='ac-gn-list']//li/a"));
 
