@@ -6,9 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class DropdownPractices {
@@ -38,6 +40,120 @@ public class DropdownPractices {
         //Doing everything in one line
         //Assert.assertEquals(simpleDropdown.getFirstSelectedOption().getText(), "Please select an option");
 
+
+        Select stateDropdown = new Select(driver.findElement(By.xpath("//select[@id='state']")));
+
+        String actualStateDropdownText = stateDropdown.getFirstSelectedOption().getText();
+        String expectedStateDropdownText = "Select a State";
+
+        Assert.assertEquals(actualStateDropdownText, expectedStateDropdownText);
+
+    }
+
+
+    @Test
+    public void test2_state_dropdown_test(){
+
+
+        Select stateDropdown = new Select(driver.findElement(By.xpath("//select[@id='state']")));
+
+        stateDropdown.selectByVisibleText("Illinois");
+
+        stateDropdown.selectByValue("VA");
+
+        stateDropdown.selectByVisibleText("California");
+
+        String expectedOptionText = "California";
+        String actualOptionText = stateDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualOptionText ,expectedOptionText);
+
+//2;22
+    }
+
+    @Test
+    public void test3_date_dropdown_verification() {
+
+        Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@id='year']")));
+        Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@id='month']")));
+        Select dayDropdown = new Select(driver.findElement(By.xpath("//select[@id='day']")));
+
+        yearDropdown.selectByVisibleText("1922");
+
+        monthDropdown.selectByValue("11");
+
+        dayDropdown.selectByIndex(0);
+
+        String expectedYear = "1922";
+        String actualYear = yearDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualYear, expectedYear);
+
+        String expectedMonth = "December";
+        String actualMonth = monthDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualMonth, expectedMonth);
+
+        String expectedDay = "1";
+        String actualDay = dayDropdown.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(actualDay, expectedDay);
+    }
+
+    @Test
+    public void test4_multiple_select_dropdown() throws InterruptedException {
+
+        Select multipleDropdown = new Select(driver.findElement(By.xpath("//select[@name='Languages']")));
+
+        List<WebElement> allOptions = multipleDropdown.getOptions();
+
+        for (WebElement each : allOptions) {
+
+            Thread.sleep(500);
+            each.click();
+
+            //4. Print out all selected values.
+            System.out.println("Selected: " + each.getText());
+
+            //Verifying each option is selected:
+            Assert.assertTrue(each.isSelected(), "The option "+each.getText()+" is not selected!");
+
+            multipleDropdown.deselectAll();
+
+            for (WebElement each1 : allOptions) {
+
+                Assert.assertFalse(each.isSelected());
+            }
+        }
+
+    }
+
+    @Test
+    public void test5_non_select_dropdown() throws InterruptedException {
+
+        WebElement websiteDropdown = driver.findElement(By.xpath("//a[@id='dropdownMenuLink']"));
+
+        Thread.sleep(2000);
+        websiteDropdown.click();
+
+
+
+        Thread.sleep(2000);
+        WebElement facebookLink = driver.findElement(By.xpath("//a[.='Facebook']"));
+
+        facebookLink.click();
+
+        String expectedTitle = "Facebook – log in or sign up";
+        String actualTitle = driver.getTitle();
+
+        Assert.assertEquals(actualTitle, expectedTitle);
+    }
+
+
+    @AfterClass
+    public void tearDownClass() throws InterruptedException {
+        Thread.sleep(5000);
+        driver.close();
     }
 }
 
